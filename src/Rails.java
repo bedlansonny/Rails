@@ -15,11 +15,7 @@ public class Rails
 
             while(true)
             {
-                ArrayStack train = new ArrayStack(carCount);
-                for(int i = carCount; i > 0; i--)
-                {
-                    train.push(i);
-                }
+                int train = 1;
 
                 ArrayStack station = new ArrayStack(carCount);
                 boolean works = true;
@@ -44,17 +40,18 @@ public class Rails
                             station.pop();
                             break;
                         }
-                        else if(train.isEmpty() && station.isEmpty())
+                        else if(train > carCount && station.isEmpty())
                         {
                             break;
                         }
-                        else if(train.isEmpty())
+                        else if(train > carCount)
                         {
                             works = false;
                         }
                         else
                         {
-                            station.push(train.pop());
+                            station.push(train);
+                            train++;
                         }
                     }
                 }
